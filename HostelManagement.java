@@ -1,7 +1,6 @@
 import java.io.*;
 import java.util.Scanner;
 import java.util.Vector;
-// changes made by amey
 @SuppressWarnings("serial")
 class Student implements Serializable {
     public String id;
@@ -40,7 +39,7 @@ class Room implements Serializable {
 
 }
 
-public class HostelManagement {
+public class rough {
     private static final int MAX = 80;
     public static final int FEES = 3000;
     public static Vector<Room> roomsVector = new Vector<>(MAX);
@@ -96,6 +95,7 @@ public class HostelManagement {
                     if (roomsVector.isEmpty()) {
                         System.out.println("Room Data Not Available!!");
                         System.out.println("Please Add Rooms First!");
+						holdScreen();
                     } else {
                         manageStudents();
                         break;
@@ -108,6 +108,7 @@ public class HostelManagement {
                     if (roomsVector.isEmpty()) {
                         System.out.println("No Student added!!");
                         System.out.println("Please Add Rooms First!");
+						holdScreen();
                     } else {
                         int found = 0;
                         for (Room r : roomsVector) {
@@ -131,6 +132,7 @@ public class HostelManagement {
                     if (roomsVector.isEmpty()) {
                         System.out.println("No Student added!!");
                         System.out.println("Please Add Rooms Frist!");
+						holdScreen();
                     } else {
                         System.out.println("Enter Student Id: ");
                         sc.nextLine();
@@ -160,6 +162,7 @@ public class HostelManagement {
                     i = 1;
                     if (roomsVector.isEmpty()) {
                         System.out.println("Student Details Not Available");
+						holdScreen();
                     } else {
                         for (Room r : roomsVector) {
                             if (r.allotted) {
@@ -178,6 +181,7 @@ public class HostelManagement {
 
                     if (roomsVector.isEmpty()) {
                         System.out.println("Student Details Not Available");
+						holdScreen();
                     } else {
                         for (Room r : roomsVector) {
                             if (r.student.paidFees != FEES && r.allotted) {
@@ -226,6 +230,14 @@ public class HostelManagement {
         } while (opt != 7);
     }
 
+	public static void holdScreen() {
+		Console c = System.console();
+		if (c != null) {
+			c.format("\t\t\tPress ENTER to continue...\n");
+			c.readLine();
+		}
+	}
+	
     private static void manageRooms() {
         Scanner sc = new Scanner(System.in);
         int ch;
@@ -299,6 +311,7 @@ public class HostelManagement {
             }
 
         } while (ch != 3);
+		sc.close();
     }
 
     private static void manageStudents() {
@@ -438,6 +451,7 @@ public class HostelManagement {
             }
 
         } while (ch != 4);
+		sc.close();
     }
 
     public static void cls() {
